@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;
+  background-image: url("../public/NES/NES.jpg");
+  background-size: cover;
 }
 
 header {
@@ -17,13 +19,38 @@ header {
 }
 
 .Main {
+  max-width: 800px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: 100%;
   min-height: 80vh;
+}
+
+/* GAME CARDS */
+
+.gameContainer {
   background-color: aliceblue;
+  width: 150px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 10px 0px rgb(255, 255, 255);
+  flex: -1 0 21%;
+}
+
+.gameImg {
+  width: 120px;
+  height: 160px;
+}
+
+.gameH3 {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 /* FOOTER */
@@ -45,21 +72,18 @@ footer {
   justify-content: center;
 }
 
-.footerText * {
-  margin: 15px;
-}
-
 .footerText2 {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  margin-bottom: 40px;
-  height: 40px;
+  margin-bottom: 20px;
+  height: 20px;
 }
 
 .gitIcon {
   background-color: white;
+  margin: 5px;
   padding: 5px;
   border-radius: 50%;
 }
