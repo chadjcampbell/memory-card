@@ -12,7 +12,8 @@
   max-width: 800px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  align-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   min-height: 80vh;
 }
