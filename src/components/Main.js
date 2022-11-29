@@ -1,8 +1,11 @@
+import { useState } from "react";
 import NES from "./nes";
 
 function Main({ score, bestScore, setScore, setBestScore }) {
+  const [NESgames, setNESgames] = useState(NES);
+
   const handleClick = (id) => {
-    let currentGame = NES.filter((game) => game.id === id)[0];
+    let currentGame = NESgames.filter((game) => game.id === id)[0];
     console.log(currentGame);
     if (currentGame.clicked) {
       setScore(0);
@@ -14,13 +17,21 @@ function Main({ score, bestScore, setScore, setBestScore }) {
       if (score >= bestScore) {
         setBestScore((score) => score + 1);
       }
+      setNESgames(
+        NESgames.map((game) => {
+          if (game.id === currentGame.id) {
+            return currentGame;
+          }
+          return game;
+        })
+      );
       return;
     }
   };
 
   return (
     <div className="Main">
-      {NES.map((game) => (
+      {NESgames.map((game) => (
         <div
           onClick={() => handleClick(game.id)}
           key={game.id}
