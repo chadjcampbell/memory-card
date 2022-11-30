@@ -1,8 +1,15 @@
 import { useState } from "react";
 import NES from "./nes";
+import Games from "./Games";
+import Modal from "./Modal";
+import uuid from "react-uuid";
 
 function Main({ score, bestScore, setScore, setBestScore }) {
   const [NESgames, setNESgames] = useState(NES);
+  const [modalIsOpen, setModalIsOpen] = useState(true);
+  const [modalMessage, setModalMessage] = useState(
+    "Welcome to Nintendo Memory! Try not to click the same game twice!"
+  );
 
   const randomize = () => {
     function shuffleArray(array) {
@@ -12,15 +19,31 @@ function Main({ score, bestScore, setScore, setBestScore }) {
       }
       return array;
     }
-    setNESgames(shuffleArray(NESgames));
+    const shuffledGames = shuffleArray(NESgames);
+    const reRenderedGames = shuffledGames.map((game) => {
+      game.id = uuid();
+      return game;
+    });
+    setNESgames(reRenderedGames);
+  };
+
+  const resetGame = () => {
+    setScore(0);
+    setNESgames(
+      NESgames.map((game) => {
+        game.clicked = false;
+        return game;
+      })
+    );
+    randomize();
+    setModalIsOpen(true);
   };
 
   const handleClick = (id) => {
     let currentGame = NESgames.filter((game) => game.id === id)[0];
-    console.log(currentGame);
     if (currentGame.clicked) {
-      setScore(0);
-      alert("You lose!");
+      setModalMessage("Game Over! Try again?");
+      resetGame();
       return;
     } else {
       currentGame.clicked = true;
@@ -37,23 +60,22 @@ function Main({ score, bestScore, setScore, setBestScore }) {
         })
       );
       randomize();
+      if (score === NESgames.length - 1) {
+        setModalMessage("You win! Play again?");
+        resetGame();
+      }
       return;
     }
   };
 
   return (
-    <div className="Main">
-      {NESgames.map((game) => (
-        <div
-          onClick={() => handleClick(game.id)}
-          key={game.id + 1}
-          className="gameContainer"
-        >
-          <img className="gameImg" src={game.src} alt={game.name} />
-          <h3 className="gameH3">{game.name}</h3>
-          <p style={{ display: "none" }}>{game.reRender}</p>
-        </div>
-      ))}
+    <div>
+      <Modal
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+        modalMessage={modalMessage}
+      />
+      <Games NESgames={NESgames} handleClick={handleClick} />
     </div>
   );
 }
