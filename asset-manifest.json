@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/memory-card/static/css/main.f85592a0.css",
+    "main.js": "/memory-card/static/js/main.b1dc42c2.js",
+    "static/media/NES.jpg": "/memory-card/static/media/NES.5a410f721ccd987fc2dd.jpg",
+    "index.html": "/memory-card/index.html",
+    "main.f85592a0.css.map": "/memory-card/static/css/main.f85592a0.css.map",
+    "main.b1dc42c2.js.map": "/memory-card/static/js/main.b1dc42c2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f85592a0.css",
+    "static/js/main.b1dc42c2.js"
+  ]
+}
