@@ -1,4 +1,4 @@
-# View the GitHub Pages **_[Live Demo Here](https://chadjcampbell.github.io/battleshipJS/)._**
+# View the GitHub Pages **_[Live Demo Here](https://chadjcampbell.github.io/memory-card/)._**
 
 # Getting Started with Create React App
 
